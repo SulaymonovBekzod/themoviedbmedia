@@ -1,0 +1,27 @@
+.navbar{
+    background-color: #042541;
+    height: 64px;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+}
+
+.navbar-wrapper-menu{
+    display: flex;
+    gap: 14px;
+    color: white;
+}
+
+.navbar-wrapper-menu-item{
+    padding: 8px;
+}
+
+.navbar-wrapper-menu-item:nth-child(1){
+    width: 154px;
+}
