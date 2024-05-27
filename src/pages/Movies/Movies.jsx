@@ -1,33 +1,36 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
+import movies from "../../repository/movies";
+import "./movies.css";
 
 function Movies() {
   const [popularMovies, setPopularMovies] = useState([]);
 
+  async function getPopularMovies() {
+    const resp = await movies.getMoviesByName("popular");
+    setPopularMovies(resp.results);
+  }
+
   useEffect(() => {
-    axios
-      .get("https://api.themoviedb.org/3/movie/popular", {
-        headers: {
-          accept: "application/json",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlMjQxMWVlNzkzNzNhYmU3OWRiNGRiYTNmZjkzYTJkZCIsInN1YiI6IjY2NTAxOTI1YmMyMjhiZWI5MjA2ODU3ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.XM9Ycvg4HIOfMbqZ6SzAv7fkC-pPDfRSRw9wpvZqB24",
-        },
-      })
-      .then((resp) => {
-        console.log(resp);
-        setPopularMovies(resp?.data?.results);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    getPopularMovies();
   }, []);
 
   return (
     <div>
       Movies page kino
-      {popularMovies.map((item, index) => {
-        return <h1 key={index}>{item?.title}</h1>;
-      })}
+      <div className="wrapper">
+        {popularMovies?.map((item, index) => {
+
+          let release_date = item.release_date
+          let release_date2 = new Date(release_date).toLocaleDateString();
+
+
+          return <div className="card" key={index}>
+            <img src={`https://media.themoviedb.org/t/p/w440_and_h660_face/${item.poster_path}`} alt="" />
+            <p>{item?.title}</p>
+            <span>{release_date2}</span>
+          </div>;
+        })}
+      </div>
     </div>
   );
 }

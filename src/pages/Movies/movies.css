@@ -1,0 +1,13 @@
+.wrapper{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+}
+
+.card{
+    width: 180px;
+}
+
+.card > img{
+    width: 100%;
+}
