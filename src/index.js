@@ -6,6 +6,9 @@ import Home from "./pages/Home/Home";
 import Movies from "./pages/Movies/Movies";
 import DashboardLayout from "./layouts/DashboardLayout";
 import UpcomingMovies from "./pages/Movies/UpcomingMovies";
+import Person from "./pages/Person/Person";
+import Tv from "./pages/Tv/Tv";
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -15,9 +18,9 @@ root.render(
         <Route element={<DashboardLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/movies" element={<Movies />} />
-          <Route path="/movies/upcoming" element={<UpcomingMovies />} />
-          <Route path="/person" element={<Home />} />
-          <Route path="/tv" element={<Home />} />
+          <Route path="/tv" element={<Tv />} />
+          <Route path="/people" element={<Person />} />
+          <Route path="/more" element={<Tv />} />
         </Route>
       </Routes>
     </BrowserRouter>

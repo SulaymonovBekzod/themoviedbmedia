@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import movies from "../../repository/movies";
 import "./movies.css";
+import filterchevron from "../../../src/images/chevronRight.jpg"
 
 function Movies() {
   const [popularMovies, setPopularMovies] = useState([]);
@@ -13,10 +14,24 @@ function Movies() {
   useEffect(() => {
     getPopularMovies();
   }, []);
+  console.log(popularMovies);
 
   return (
-    <div>
-      Movies page kino
+    <div className="popular_movies">
+      <div className="sidebar_movie">
+        <h1>Popular Movies</h1>
+        <div className="moviesFilter">
+          <div className="sort">
+            <h3 className="sort2">Sort</h3>
+            <img src={filterchevron} alt="filter chevron" />
+          </div>
+          <div className="sort">
+            <h3 className="sort3">Filters</h3>
+            <img src={filterchevron} alt="filter chevron" />
+          </div>
+          <button className="filterSearch">Search</button>
+        </div>
+      </div>
       <div className="wrapper">
         {popularMovies?.map((item, index) => {
 
@@ -26,8 +41,13 @@ function Movies() {
 
           return <div className="card" key={index}>
             <img src={`https://media.themoviedb.org/t/p/w440_and_h660_face/${item.poster_path}`} alt="" />
-            <p>{item?.title}</p>
+            <h4 className="original_title">{item.original_title}</h4>
             <span>{release_date2}</span>
+            <div>
+              <div>
+                
+              </div>
+            </div>
           </div>;
         })}
       </div>

@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react'
-import { getMoviesByName } from '../../repository/repository'
+import React from 'react'
 
 function Tv() {
 
