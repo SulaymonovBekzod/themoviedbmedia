@@ -79,7 +79,7 @@ select {
 .card {
     border-radius: 4px;
     overflow: hidden;
-    border: 1px solid black;
+    box-shadow: 0px 1px 2px 1px;
 }
 
 .sort2 {

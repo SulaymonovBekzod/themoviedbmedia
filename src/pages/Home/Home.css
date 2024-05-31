@@ -1,0 +1,18 @@
+.thomas_shalby {
+    width: 100%;
+    height: 270px;
+    
+}
+
+.background {
+    background-image: url("https://image.tmdb.org/t/p/w3840_and_h1200_multi_faces_filter(duotone,00192f,00baff)/xcXALwBjdHIjrESpGVhghqj8fGT.jpg");
+}
+
+.background-image {
+    position: relative;
+    background: linear-gradient(to bottom right, #221d93 0%, #4958ab 30%, #91ced8 100%);
+    width: 100%;
+    height: 250px;
+    bottom: 5px;
+}
+
