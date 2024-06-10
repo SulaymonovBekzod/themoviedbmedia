@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import './navbar.css'
-import Plus from '../../../src/images/Plus.jpg'
+import Plus from '../../../src/images/Plus_img.jpg'
 function Navbar() {
   const navbarMenuData = [
     {
@@ -48,9 +48,9 @@ function Navbar() {
                 </li>
               );
             })}
-            <div>
-              <img className="plus_img" src={Plus} alt="" />
-            </div>
+            <img className="plus_img" src={Plus} alt="" />
+            <img className="minus_img" src="https://www.pngitem.com/pimgs/m/67-679828_white-plus-png-plus-icon-white-png-transparent.png" alt="" />
+            <img className="valakida" src="https://i.pinimg.com/736x/35/68/0a/35680a4adc8c43f8c1111c642bd416c6.jpg" alt="" />
           </ul>
         </div>
       </div>

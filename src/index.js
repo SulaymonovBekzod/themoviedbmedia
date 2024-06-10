@@ -5,7 +5,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Movies from "./pages/Movies/Movies";
 import DashboardLayout from "./layouts/DashboardLayout";
-import UpcomingMovies from "./pages/Movies/UpcomingMovies";
 import Person from "./pages/Person/Person";
 import Tv from "./pages/Tv/Tv";
 

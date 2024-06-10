@@ -1,0 +1,29 @@
+.cards {
+    width: 300px;
+    border: 1px solid black;
+    border-top-right-radius: 11px;
+    border-top-left-radius: 11px;
+    margin-top: 15px;
+}
+
+.person_people {
+    width: 100%;
+    border-top-right-radius: 9px;
+    border-top-left-radius: 9px;
+    border-bottom-left-radius: 9px;
+    border-bottom-right-radius: 9px;
+    height: 380px;
+    
+}
+
+.personContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 90%;
+}
+
+.original_name {
+    color: black;
+}

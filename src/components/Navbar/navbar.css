@@ -28,6 +28,16 @@
 
 .plus_img {
     width: 3%;
-    display: flex;
-    align-items: stretch;
+}
+
+.minus_img {
+    width: 3%;
+    background: none;
+}
+
+.valakida {
+    background-color: #042541;
+    background-repeat: inherit;
+    width: 3%;
+    
 }
