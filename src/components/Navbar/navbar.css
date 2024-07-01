@@ -12,6 +12,11 @@
     padding: 0 40px;
 }
 
+.navbarRow {
+    display: flex;
+    justify-content: space-between;
+}
+
 .navbar-wrapper-menu{
     display: flex;
     gap: 14px;
@@ -39,5 +44,27 @@
     background-color: #042541;
     background-repeat: inherit;
     width: 3%;
-    
+}
+
+.btn_translate {
+    position: relative;
+    left: 420px;
+    padding: 4px 10px;
+    width: 100%;
+    height: 30px;
+    border: 1px solid white;
+    background-color: #042541;
+    color: white;
+    border-radius: 3px;
+    top: 18px;
+}
+
+.call_img {
+    position: relative;
+    left: 470px;
+    bottom: 15px;
+}
+
+.profil {
+
 }

@@ -1,10 +1,10 @@
 import client, { BaseUrl, BearerToken } from "./repository";
 
-class TvShow {
-  getMoviesByName(endpoint,name) {
-    const endPoint = `tv/${endpoint}${name}`;
+class SelectedMovie {
+  getMovieById(name, endpoint) {
+    const endPoint = `/${endpoint}/${name}`;
 
-    const tvShow = client
+    const movies = client
       .get(BaseUrl + endPoint, {
         headers: {
           accept: "application/json",
@@ -18,9 +18,8 @@ class TvShow {
         return err;
       });
 
-    return tvShow;
+    return movies;
   }
-
 }
 
-export default new TvShow()
+export default new SelectedMovie();

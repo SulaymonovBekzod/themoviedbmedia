@@ -1,13 +1,8 @@
 import client, { BaseUrl, BearerToken } from "./repository";
 
 class Person {
-  async getMoviesByName(name) {
-    const endPoint = `person/${name}`;
-    
-    console.log('BaseUrl:', BaseUrl);
-    console.log('endPoint:', endPoint);
-    console.log('BearerToken:', BearerToken);
-
+  async getMoviesByName(name, endpoint) {
+    const endPoint = `person/${name}/${endpoint}`;
     try {
       const resp = await client.get(BaseUrl + endPoint, {
         headers: {

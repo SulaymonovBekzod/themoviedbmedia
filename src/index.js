@@ -7,11 +7,15 @@ import Movies from "./pages/Movies/Movies";
 import DashboardLayout from "./layouts/DashboardLayout";
 import Person from "./pages/Person/Person";
 import Tv from "./pages/Tv/Tv";
-
+import Context from "./components/Context/Context";
+import MovivesDb from "./pages/Movies/MoviesDb";
+import TvNews from "./pages/Tv/TvNews";
+import People from "./pages/Person/People";
+import Search from "./pages/Search/Search";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
+  <Context>
     <BrowserRouter>
       <Routes>
         <Route element={<DashboardLayout />}>
@@ -20,8 +24,12 @@ root.render(
           <Route path="/tv" element={<Tv />} />
           <Route path="/people" element={<Person />} />
           <Route path="/more" element={<Tv />} />
+          <Route path="/movie/:id" element={<MovivesDb />} />
+          <Route path="/tv/:id" element={<TvNews />}/>
+          <Route path="/people/:id" element={<People />}/>
+          <Route path="/search" element={<Search />}/>
         </Route>
       </Routes>
     </BrowserRouter>
-  </React.StrictMode>
+  </Context>
 );

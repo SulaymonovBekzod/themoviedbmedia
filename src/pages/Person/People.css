@@ -1,0 +1,38 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.people_container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.people_row {
+    display: flex;
+}
+
+.person_title {
+    color: black;
+}
+
+.people_img {
+    position: relative;
+    top: 32px;
+    right: 27px;
+    border-radius: 8px;
+    height: 450px;
+}
+
+.people_text_big {
+    margin-top: 33px;
+}
+
+.person_title3 {
+    margin-top: 10px;
+    color: black;
+}
+
+.people_biography {
+    margin-top: 20px;
+}

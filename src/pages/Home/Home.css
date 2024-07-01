@@ -44,3 +44,57 @@
     padding-left: 15px;
     font-size: 18px;
 }
+
+.trending_title1 {
+    color: black;
+}
+
+.trending_title2 {
+    color: black;
+}
+
+.trending_title3 {
+    color: black;
+}
+
+.trending_img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.trending_section {
+    width: 95%;
+    margin:  auto;
+    display: flex;
+    overflow-x: scroll;
+    gap: 10px;
+    margin-top: 60px;
+}
+
+.trending_card {
+    min-width: 150px;
+}
+
+.data {
+    color: black;
+}
+
+.title {
+    position: relative;
+    top: 10px;
+    color: black;
+}
+
+.search_btn {
+    position: relative;
+    left: 1200px;
+    bottom: 44px;
+    border-radius: 20px;
+    border: none;
+    width: 7%;
+    height: 44px;
+    color: white;
+    background-color: rgb(6, 211, 211);
+    font-weight: bold;
+    font-size: 14px;
+}
