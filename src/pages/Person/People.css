@@ -33,6 +33,24 @@
     color: black;
 }
 
-.people_biography {
-    margin-top: 20px;
+.known_title {
+    margin-top: 10px;
+    color: black;
+}
+
+.popular_people {
+    display: flex;
+    justify-content: start;
+    overflow-x: scroll;
+}
+
+.popular_person {
+    width: 300px;
+    gap: 10x;
+    margin-top: 60px;
+}
+
+.known_img {
+    border-radius: 10px;
+    width: 50%;
 }

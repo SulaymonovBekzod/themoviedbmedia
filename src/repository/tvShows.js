@@ -1,6 +1,6 @@
 import client, { BaseUrl, BearerToken } from "./repository";
 
-class TvShow {
+class TvShows {
   getMoviesByName(endpoint,name) {
     const endPoint = `tv/${endpoint}${name}`;
 
@@ -23,4 +23,4 @@ class TvShow {
 
 }
 
-export default new TvShow()
+export default new TvShows()

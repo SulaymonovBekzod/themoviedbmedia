@@ -1,70 +1,93 @@
-.navbar{
-    background-color: #042541;
-    height: 64px;
-    display: flex;
-    align-items: center;
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
 }
 
-.navbar-wrapper{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 40px;
+.navbar {
+  background-color: #042541;
+  height: 64px;
+  display: flex;
+  align-items: center;
 }
 
 .navbarRow {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
 }
 
-.navbar-wrapper-menu{
-    display: flex;
-    gap: 14px;
-    color: white;
+.navbar-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  flex-grow: 1;
 }
 
-.navbar-wrapper-menu-item{
-    padding: 8px;
+.navbar-wrapper-menu {
+  display: flex;
+  gap: 14px;
+  cursor: pointer;
+  color: white;
 }
 
-.navbar-wrapper-menu-item:nth-child(1){
-    width: 154px;
+.navbar-wrapper-menu-item {
+  padding: 8px;
+  position: relative;
 }
 
-.plus_img {
-    width: 3%;
+.navbar-wrapper-menu-item:nth-child(1) {
+  width: 170px;
 }
 
-.minus_img {
-    width: 3%;
-    background: none;
-}
-
-.valakida {
-    background-color: #042541;
-    background-repeat: inherit;
-    width: 3%;
+.rightUser {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  cursor: pointer;
+  color: white;
 }
 
 .btn_translate {
-    position: relative;
-    left: 420px;
-    padding: 4px 10px;
-    width: 100%;
-    height: 30px;
-    border: 1px solid white;
-    background-color: #042541;
-    color: white;
-    border-radius: 3px;
-    top: 18px;
+  border: 1px solid white;
+  padding: 2px 5px;
+  border-radius: 3px;
+  background: none;
+  color: white;
+  cursor: pointer;
 }
 
-.call_img {
-    position: relative;
-    left: 470px;
-    bottom: 15px;
+.profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(210, 144, 1);
+  border-radius: 50%;
+  padding: 4px 10px;
 }
 
-.profil {
+.moviesToggle {
+  background-color: white;
+  color: black;
+  z-index: 5;
+  display: none;
+  padding: 10px 30px;
+  border-radius: 8px;
+  position: absolute;
+  left: 0;
+  top: 100%;
+}
 
+.moviesToggle li {
+  padding: 3px 5px;
+  width: 120px;
+}
+
+.navbar-wrapper-menu-item:hover .moviesToggle {
+  display: block;
+}
+
+.themoviedborg_img {
+  max-width: 100%;
+  height: auto;
 }

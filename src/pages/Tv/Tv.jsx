@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import "./Tv.css"
-import tvShow from '../../repository/tvShows'
+import tvShows from '../../repository/tvShows'
 import filterchevron from "../../../src/images/chevronRight.jpg"
 import { LangContext } from '../../components/Context/Context'
 
@@ -12,7 +12,7 @@ function Tv() {
   const navigate = useNavigate()
 
     async function getTvShows() {
-      let res = await tvShow.getMoviesByName(`popular?language=${language}-US&page=1`)
+      let res = await tvShows.getMoviesByName(`popular?language=${language}-US&page=1`)
       setTvshowsres(res.results)
       console.log(res.results);
     }

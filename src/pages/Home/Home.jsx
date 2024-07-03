@@ -21,13 +21,12 @@ export default function Home() {
     TrendingMovie()
   }, [language])
 
-  function searchAll() {
-    console.log(searchRef.current.value);
-    navigation({
-      pathname: '/search',
-      search: `value=${searchRef.current.value}`
-    })
-  }
+  const handleSearch = () => {
+    const searchQuery = searchRef?.current?.value;
+    if (searchQuery) {
+      navigation(`/search?query=${searchQuery}`);
+    }
+  };
 
 
 
@@ -38,13 +37,13 @@ export default function Home() {
           {language === "ru" ? <h1 className='home_title'>Welcome.</h1> : <h1 className='home_title'>Добро пожаловать.</h1>}
           {language === "ru" ? <h5 className='home_text'>Millions of movies, TV shows and people to discover. Explore now.</h5> : <h5 className='home_text'>Миллионы фильмов, сериалов и людей. Исследуйте сейчас.</h5>}
           {language === "ru" ? <input ref={searchRef} className='home_input' type="text" placeholder='Search for a movie, tv show, person......' /> : <input ref={searchRef} className='home_input' type="text" placeholder='Найти фильм, сериал, персону......' />}
-          <button onClick={() => searchAll()} className='search_btn'>serach</button>
+          <button onClick={handleSearch} className='search_btn'>serach</button>
         </div>
         <div className='background-image'>
         </div>
         <div className='trending_section'>
           {
-            trendingData.map((item, index) => {
+            trendingData?.map((item, index) => {
               return (
                 <div className='trending_card' key={index}>
                   <img className='trending_img' src={`https://media.themoviedb.org/t/p/w440_and_h660_face/${item.poster_path}`} alt="" />

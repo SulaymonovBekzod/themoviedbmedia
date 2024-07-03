@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import movies from "../../repository/movies";
 import "./movies.css";
-import filterchevron from "../../../src/images/chevronRight.jpg"
+import filterchevron from "../../images/chevronRight.jpg"
 import { LangContext } from "../../components/Context/Context";
 import { useNavigate } from "react-router-dom";
 
