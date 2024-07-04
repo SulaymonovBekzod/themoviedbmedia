@@ -5,11 +5,13 @@ import filterChevron from "../../images/chevronRight.jpg";
 import { dataconvert } from "../../repository/dataconvert";
 import { SpinnerCircular } from "spinners-react";
 import { LangContext } from "../../components/Context/Context";
+import { useNavigate } from "react-router-dom";
 
 function OnTV() {
   const [popularMovies, setPopularMovies] = useState([]);
   const [loader, setLoader] = useState(true);
   const { language } = useContext(LangContext)
+  const navigateOntv = useNavigate()
   async function getPopularTvMovies() {
     const resp = await tvShow.getMoviesByName(`airing_today?language=${language}-US&page=1`);
     setPopularMovies(resp.results);
@@ -19,6 +21,10 @@ function OnTV() {
   useEffect(() => {
     getPopularTvMovies();
   }, [language]);
+
+  function clickedOntv(id) {
+    navigateOntv(`/tvnews/${id}`)
+  }
 
   if (loader) {
     return (
@@ -51,7 +57,7 @@ function OnTV() {
         <div className="moviesCards">
           {popularMovies?.map((item, index) => {
             return (
-              <div key={index} className="card">
+              <div onClick={() => clickedOntv(item.id)} key={index} className="card">
                 <span className="material-symbols-outlined moreIcon">
                   more_horiz
                 </span>
@@ -66,8 +72,8 @@ function OnTV() {
                       <sup>%</sup>
                     </p>
                   </span>
-                  <h1>{item.original_title}</h1>
-                  <p>{dataconvert(item.release_date)}</p>
+                  <h1>{item.original_name}</h1>
+                  <p>{dataconvert(item.first_air_date)}</p>
                 </div>
               </div>
             );

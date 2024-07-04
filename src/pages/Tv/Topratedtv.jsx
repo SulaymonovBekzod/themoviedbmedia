@@ -1,30 +1,28 @@
 import React, { useContext, useEffect, useState } from "react";
-import movies from "../../repository/movies";
 import "./default.css";
-
 import filterChevron from "../../images/chevronRight.jpg";
 import { dataconvert } from "../../repository/dataconvert";
 import { SpinnerCircular } from "spinners-react";
 import { LangContext } from "../../components/Context/Context";
+import tvShows from "../../repository/tvShows";
 import { useNavigate } from "react-router-dom";
-
-function TopRated() {
-    const [topRatedMovies, setTopRatedMovies] = useState([]);
+function TopRatedTv() {
+    const [popularMovies, setPopularMovies] = useState([]);
     const [loader, setLoader] = useState(true);
     const { language } = useContext(LangContext)
-    const navigateTop = useNavigate()
-    async function getTopRatedMovies() {
-        const resp = await movies.getMoviesByName(`top_rated?language=${language}-US&page=1`);
-        setTopRatedMovies(resp.results);
+    const navigateToptv = useNavigate()
+    async function getPopularTvMovies() {
+        const resp = await tvShows.getMoviesByName(`top_rated?language=${language}-US&page=1`);
+        setPopularMovies(resp.results);
         setLoader(false);
     }
 
-    useEffect(() => {
-        getTopRatedMovies();
+    useEffect(() => { 
+        getPopularTvMovies();
     }, [language]);
 
-    function clickedRated(id) {
-        navigateTop(`/moviesdb/${id}`)
+    function clickedToptv(id) {
+        navigateToptv(`/tvnews/${id}`)
     }
 
     if (loader) {
@@ -42,7 +40,7 @@ function TopRated() {
     }
     return (
         <div className="moviesContainer">
-            <h2>Top Rated Movies</h2>
+            <h2>Top Rated</h2>
             <div className="moviesWrapper">
                 <div className="moviesFilter">
                     <div className="sort">
@@ -56,15 +54,9 @@ function TopRated() {
                     <button className="filterSearch">Search</button>
                 </div>
                 <div className="moviesCards">
-                    {topRatedMovies?.map((item, index) => {
+                    {popularMovies?.map((item, index) => {
                         return (
-                            <div
-                                onClick={() => 
-                                    clickedRated(item.id)
-                                }
-                                key={index}
-                                className="card"
-                            >
+                            <div onClick={() => clickedToptv(item.id)} key={index} className="card">
                                 <span className="material-symbols-outlined moreIcon">
                                     more_horiz
                                 </span>
@@ -79,8 +71,8 @@ function TopRated() {
                                             <sup>%</sup>
                                         </p>
                                     </span>
-                                    <h1>{item.original_title}</h1>
-                                    <p>{dataconvert(item.release_date)}</p>
+                                    <h1>{item.original_name}</h1>
+                                    <p>{dataconvert(item.first_air_date)}</p>
                                 </div>
                             </div>
                         );
@@ -91,4 +83,4 @@ function TopRated() {
     );
 }
 
-export default TopRated;
+export default TopRatedTv;

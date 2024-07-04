@@ -16,6 +16,8 @@ import NowPlaying from "./pages/Movies/Nowplaying";
 import TopRated from "./pages/Movies/Toprated";
 import Upcoming from "./pages/Movies/Upcoming";
 import OnTV from "./pages/Tv/Ontv";
+import Airingtodaytv from "./pages/Tv/Airingtodaytv";
+import TopRatedTv from "./pages/Tv/Topratedtv";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -28,12 +30,15 @@ root.render(
           <Route path="/movies/now_playing" element={<NowPlaying />} />
           <Route path="/movies/upcoming" element={<Upcoming />} />
           <Route path="/movies/top_rated" element={<TopRated />} />
+          <Route path="moviesdb/:id" element={<MovivesDb />}/>
           <Route path="/tv" element={<Tv />} /> 
           <Route path="/tv/on-the-air" element={<OnTV />} />
+          <Route path="/tv/airing-today" element={<Airingtodaytv/>} />
+          <Route path="/tv/top-rated" element={<TopRatedTv/>} />
           <Route path="/people" element={<Person />} />
           <Route path="/more" element={<Tv />} />
           <Route path="/movie/:id" element={<MovivesDb />} />
-          <Route path="/tv/:id" element={<TvNews />} />
+          <Route path="/tvnews/:id" element={<TvNews />} />
           <Route path="/people/:id" element={<People />} />
           <Route path="/search" element={<Search />} />
         </Route>

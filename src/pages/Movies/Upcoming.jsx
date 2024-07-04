@@ -6,11 +6,12 @@ import filterChevron from "../../images/chevronRight.jpg"
 import { dataconvert } from "../../repository/dataconvert";
 import { SpinnerCircular } from "spinners-react";
 import { LangContext } from "../../components/Context/Context";
+import { useNavigate } from "react-router-dom";
 function Upcoming() {
   const [upcomingMovies, setUpcomingMovies] = useState([]);
   const [loader, setLoader] = useState(true);
   const { language } = useContext(LangContext)
-
+  const navigateComing = useNavigate()
   async function getupcomingMovies() {
     const resp = await movies.getMoviesByName(`upcoming?language=${language}-US&page=1`);
     setUpcomingMovies(resp.results);
@@ -19,7 +20,12 @@ function Upcoming() {
 
   useEffect(() => {
     getupcomingMovies();
-  }, []);
+  }, [language]);
+
+  function clickedComing(id) {
+    navigateComing(`/moviesdb/${id}`)
+  }
+
   if (loader) {
     return (
       <div className="loader">
@@ -52,10 +58,7 @@ function Upcoming() {
           {upcomingMovies?.map((item, index) => {
             return (
               <div
-                onClick={() => {
-                  // return movie;
-                  console.log(item);
-                }}
+                onClick={() => clickedComing(item.id)}
                 key={index}
                 className="card"
               >

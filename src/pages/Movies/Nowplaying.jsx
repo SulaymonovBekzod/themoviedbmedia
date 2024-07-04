@@ -2,16 +2,17 @@ import React, { useContext, useEffect, useState } from "react";
 import movies from "../../repository/movies";
 import "./default.css";
 
-import filterChevron from "../../images/chevronRight.jpg"
+import filterChevron from "../../images/chevronRight.jpg";
 import { dataconvert } from "../../repository/dataconvert";
 import { SpinnerCircular } from "spinners-react";
 import { LangContext } from "../../components/Context/Context";
+import { useNavigate } from "react-router-dom";
 
 function NowPlaying() {
     const [nowPlayingMovies, setNowPlayingMovies] = useState([]);
     const [loader, setLoader] = useState(true);
     const { language } = useContext(LangContext)
-
+    const navigatePlaying = useNavigate()
     async function getnowPlayingMovies() {
         const resp = await movies.getMoviesByName(`now_playing?language=${language}-US&page=1`);
         setNowPlayingMovies(resp.results);
@@ -21,6 +22,10 @@ function NowPlaying() {
     useEffect(() => {
         getnowPlayingMovies();
     }, [language]);
+
+    function clickedPlaying(id) {
+        navigatePlaying(`/moviesdb/${id}`)
+    }
     if (loader) {
         return (
             <div className="loader">
@@ -52,14 +57,7 @@ function NowPlaying() {
                 <div className="moviesCards">
                     {nowPlayingMovies?.map((item, index) => {
                         return (
-                            <div
-                                onClick={() => {
-                                    // return movie;
-                                    console.log(item);
-                                }}
-                                key={index}
-                                className="card"
-                            >
+                            <div onClick={() => clickedPlaying(item.id)} key={index} className="card">
                                 <span className="material-symbols-outlined moreIcon">
                                     more_horiz
                                 </span>
@@ -82,7 +80,7 @@ function NowPlaying() {
                     })}
                 </div>
             </div>
-        </div>
+        </div >
     );
 }
 

@@ -4,11 +4,9 @@
 }
 
 .container_movies {
+    background-repeat: no-repeat!important;
+    background-size: cover!important;
     width: 100%;
-    margin: 0 auto;
-    background-position: 0 60%;
-    background-size: cover;
-    background-repeat: no-repeat;
 }
 
 .containerMovieWrapper {

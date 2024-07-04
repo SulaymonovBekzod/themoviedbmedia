@@ -19,7 +19,7 @@ export default function MovivesDb() {
   }, [])
 
   return (
-    <div style={{ background: `url(https://media.themoviedb.org/t/p/w440_and_h660_face/${movie?.backdrop_path})` }} className='container_movies'>
+    <div  style={{ background: `url(https://media.themoviedb.org/t/p/w440_and_h660_face/${movie?.backdrop_path})` }} className='container_movies'>
       <div className="containerMovieWrapper">
         <div className='row_movies'>
           <div className='moviesdb_id'>

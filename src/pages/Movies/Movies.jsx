@@ -1,58 +1,89 @@
 import React, { useContext, useEffect, useState } from "react";
 import movies from "../../repository/movies";
-import "./movies.css";
-import filterchevron from "../../images/chevronRight.jpg"
+import "./default.css";
+
+import filterChevron from "../../images/chevronRight.jpg";
+import { dataconvert } from "../../repository/dataconvert";
+import { SpinnerCircular } from "spinners-react";
 import { LangContext } from "../../components/Context/Context";
 import { useNavigate } from "react-router-dom";
-
-function Movies() {
-  const [popularMovies, setPopularMovies] = useState([]);
-  const navigate = useNavigate()
+function Upcoming() {
+  const [upcomingMovies, setUpcomingMovies] = useState([]);
+  const [loader, setLoader] = useState(true);
   const { language } = useContext(LangContext)
-  async function getPopularMovies() {
-    const resp = await movies.getMoviesByName(`popular?language=${language}-US&page=1`);
-    setPopularMovies(resp.results);
+  const navigateMovie = useNavigate()
+  async function getupcomingMovies() {
+    const resp = await movies.getMoviesByName(`upcoming?language=${language}-US&page=1`);
+    setUpcomingMovies(resp.results);
+    setLoader(false);
   }
 
   useEffect(() => {
-    getPopularMovies();
-  }, [language]);
+    getupcomingMovies();
+  }, []);
 
-  function MoviesById(id) {
-    navigate (`/movie/${id}`)
+  function clickedMovie(id) {
+    navigateMovie(`/moviesdb/${id}`)
   }
 
+  if (loader) {
+    return (
+      <div className="loader">
+        <SpinnerCircular
+          size={100}
+          thickness={100}
+          speed={100}
+          color="#000"
+          secondaryColor="rgba(0, 0, 0, 0.3)"
+        />
+      </div>
+    );
+  }
   return (
-    <div className="popular_movies">
-      <div className="sidebar_movie">
-        <h1>Popular Movies</h1>
+    <div className="moviesContainer">
+      <h2>Upcoming Movies</h2>
+      <div className="moviesWrapper">
         <div className="moviesFilter">
           <div className="sort">
-            <h3 className="sort2">Sort</h3>
-            <img src={filterchevron} alt="filter chevron" />
+            <h3>Sort</h3>
+            <img src={filterChevron} alt="filter chevron" />
           </div>
           <div className="sort">
-            <h3 className="sort3">Filters</h3>
-            <img src={filterchevron} alt="filter chevron" />
+            <h3>Filters</h3>
+            <img src={filterChevron} alt="filter chevron" />
           </div>
           <button className="filterSearch">Search</button>
         </div>
-      </div>
-      <div className="wrapper">
-        {popularMovies?.map((item, index) => {
-
-          let release_date = item.release_date
-          let release_date2 = new Date(release_date).toLocaleDateString();
-
-          return <div onClick={() => MoviesById(item.id)} className="card" key={index}>
-            <img src={`https://media.themoviedb.org/t/p/w440_and_h660_face/${item.poster_path}`} alt="" />  
-            <h4 className="original_title">{item.title}</h4>
-            <span>{release_date2}</span>
-          </div>;
-        })}
+        <div className="moviesCards">
+          {upcomingMovies?.map((item, index) => {
+            return (
+              <div
+                onClick={() => clickedMovie(item.id)} key={index} className="card"
+              >
+                <span className="material-symbols-outlined moreIcon">
+                  more_horiz
+                </span>
+                <img
+                  src={`https://media.themoviedb.org/t/p/w440_and_h660_face/${item.poster_path}`}
+                  alt=""
+                />
+                <div className="cardBody">
+                  <span>
+                    {Math.round(item.vote_average * 10)}
+                    <p>
+                      <sup>%</sup>
+                    </p>
+                  </span>
+                  <h1>{item.original_title}</h1>
+                  <p>{dataconvert(item.release_date)}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
 }
 
-export default Movies;
+export default Upcoming;

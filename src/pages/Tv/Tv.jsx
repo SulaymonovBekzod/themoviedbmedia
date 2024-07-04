@@ -1,61 +1,87 @@
-import React, { useContext, useEffect, useState } from 'react'
-import "./Tv.css"
-import tvShows from '../../repository/tvShows'
-import filterchevron from "../../../src/images/chevronRight.jpg"
-import { LangContext } from '../../components/Context/Context'
+import React, { useEffect, useState } from "react";
+import "./default.css";
+import filterChevron from "../../images/chevronRight.jpg";
+import { dataconvert } from "../../repository/dataconvert";
+import { SpinnerCircular } from "spinners-react";
+import tvShows from "../../repository/tvShows";
+import { Link, useNavigate } from "react-router-dom";
 
-import { useNavigate } from 'react-router-dom'
 function Tv() {
-  const { language } = useContext(LangContext)
-  const [tvshowsres, setTvshowsres] = useState([])
-
+  const [popularMovies, setPopularMovies] = useState([]);
+  const [loader, setLoader] = useState(true);
   const navigate = useNavigate()
-
-    async function getTvShows() {
-      let res = await tvShows.getMoviesByName(`popular?language=${language}-US&page=1`)
-      setTvshowsres(res.results)
-      console.log(res.results);
-    }
-
-  useEffect(() => {
-    getTvShows()
-  }, [language])
-
-  function TvNewsShow(id) {
-    navigate((`/tv/${id}`))
+  async function getPopularTvMovies() {
+    const resp = await tvShows.getMoviesByName("popular?language=en-US&page=1");
+    setPopularMovies(resp.results);
+    setLoader(false);
   }
 
+  useEffect(() => {
+    getPopularTvMovies();
+  }, []);
+
+  function handlecliked(id) {
+    navigate(`/tvnews/${id}`)
+    console.log(id);
+  }
+  
+
+  if (loader) {
+    return (
+      <div className="loader">
+        <SpinnerCircular
+          size={100}
+          thickness={100}
+          speed={100}
+          color="#000"
+          secondaryColor="rgba(0, 0, 0, 0.3)"
+        />
+      </div>
+    );
+  }
   return (
-    <div className='tvshow'>
-      <div className="sidebar_movie2">
-        <h1>Popular Movies</h1>
+    <div className="moviesContainer">
+      <h2>Popular Movies</h2>
+      <div className="moviesWrapper">
         <div className="moviesFilter">
           <div className="sort">
-            <h3 className="sort2">Sort</h3>
-            <img src={filterchevron} alt="filter chevron" />
+            <h3>Sort</h3>
+            <img src={filterChevron} alt="filter chevron" />
           </div>
           <div className="sort">
-            <h3 className="sort3">Filters</h3>
-            <img src={filterchevron} alt="filter chevron" />
+            <h3>Filters</h3>
+            <img src={filterChevron} alt="filter chevron" />
           </div>
-          <button className="filterSearch2">Search</button>
+          <button className="filterSearch">Search</button>
+        </div>
+        <div className="moviesCards">
+          {popularMovies?.map((item, index) => {
+            return (
+              <div onClick={() => handlecliked(item.id)} key={index} className="card">
+                <span className="material-symbols-outlined moreIcon">
+                  more_horiz
+                </span>
+                <img
+                  src={`https://media.themoviedb.org/t/p/w440_and_h660_face/${item.poster_path}`}
+                  alt=""
+                />
+                <div className="cardBody">
+                  <span>
+                    {Math.round(item.vote_average * 10)}
+                    <p>
+                      <sup>%</sup>
+                    </p>
+                  </span>
+                  <h1>{item.original_name}</h1>
+                  <p>{dataconvert(item.first_air_date)}</p>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
-      <div  className='wrapper2'>
-        {
-          tvshowsres?.map((item, index) => {
-            return (
-              <div onClick={() => TvNewsShow(item.id)} className='card_tv' key={index}>
-                <img className='card_tv_img' src={`https://media.themoviedb.org/t/p/w440_and_h660_face/${item.poster_path}`} alt="" />
-                <p className='tv_title10'>{item.name}</p>
-                <p classNa2='tv_title10'>{item.first_air_date}</p>
-              </div>
-            )
-          })
-        }
-      </div>
     </div>
-  )
+  );
 }
 
-export default Tv
+export default Tv;
